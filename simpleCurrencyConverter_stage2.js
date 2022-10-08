@@ -15,17 +15,23 @@ class currencyConverterUSD {
 
 function currencyConverter() {
     console.log(`Welcome to Currency Converter!`);
+
     let initialiser = new currencyConverterUSD();
+
     for (const [key, value] of Object.entries(initialiser)) {
         console.log(`1 USD equals ${value} ${key}`);
     }
+
     console.log("I can convert USD to these currencies: JPY, EUR, RUB, USD, GBP");
-    let currencyConvertFrom = input("Type the currency you wish to convert: ").toUpperCase();
+
+    console.log("Type the currency you wish to convert: USD");
+
     let currencyConvertTo = input("To: ").toUpperCase();
     if (!convertCurrencyList.includes(currencyConvertTo)) {
         console.log("Unknown currency");
         return;
     }
+
     let amount = input("Amount: ");
     if (amount < 1) {
         console.log("The amount cannot be less than 1");
@@ -35,7 +41,8 @@ function currencyConverter() {
         return;
     }
     let result = new currencyConverterUSD(amount);
-    console.log(`Result: ${amount} ${currencyConvertFrom} equals ${result[currencyConvertTo].toFixed(4)} ${currencyConvertTo}`);
+
+    console.log(`Result: ${amount} USD equals ${result[currencyConvertTo].toFixed(4)} ${currencyConvertTo}`);
 }
 
 currencyConverter();
