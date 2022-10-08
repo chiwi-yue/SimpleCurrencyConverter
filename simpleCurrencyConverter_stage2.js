@@ -38,5 +38,4 @@ function currencyConverter() {
     console.log(`Result: ${amount} ${currencyConvertFrom} equals ${result[currencyConvertTo].toFixed(4)} ${currencyConvertTo}`);
 }
 
-
 currencyConverter();
