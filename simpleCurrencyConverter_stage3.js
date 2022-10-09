@@ -1,4 +1,4 @@
-// Stage 2/4: Stage 3/4: Convert all currencies
+//Stage 3/4: Convert all currencies
 const input = require('sync-input');
 
 const convertCurrencyList = new Array('JPY', 'EUR', 'RUB', 'USD', 'GBP');
@@ -18,30 +18,33 @@ function currencyConverter() {
         console.log(`1 USD equals ${value} ${key}`);
     }
 
-    let currencyConvertFrom = input("What do you want to convert? \nFrom: ").toUpperCase();
+    let currencyConvertFrom = input("What do you want to convert?\nFrom: ").toUpperCase();
+        if (!convertCurrencyList.includes(currencyConvertFrom)) {
+            console.log("Unknown currency");
+            return;
+        }
 
     let currencyConvertTo = input("To: ").toUpperCase();
-    if (!convertCurrencyList.includes(currencyConvertTo)) {
-        console.log("Unknown currency");
-        return;
-    }
+        if (!convertCurrencyList.includes(currencyConvertTo)) {
+            console.log("Unknown currency");
+            return;
+        }
 
     let amount = input("Amount: ");
-
-    if (amount < 1) {
-        console.log("The amount cannot be less than 1");
-        return;
-    } else if (isNaN(amount)) {
-        console.log("The amount has to be a number");
-        return;
-    }
+        if (amount < 1) {
+            console.log("The amount cannot be less than 1");
+            return;
+        } else if (isNaN(amount)) {
+            console.log("The amount has to be a number");
+            return;
+        }
     
-    let result = getConverteredResult(currencyConvertFrom, currencyConvertTo, amount);
+    let result = helperGetConverteredResult(currencyConvertFrom, currencyConvertTo, amount);
 
     console.log(`Result: ${amount} ${currencyConvertFrom} equals ${result.toFixed(4)} ${currencyConvertTo}`);
 }
 
-function getConverteredResult(currencyConvertFrom, currencyConvertTo, amount) {
+function helperGetConverteredResult(currencyConvertFrom, currencyConvertTo, amount) {
     let convertedToUSD = amount / convertRate[currencyConvertFrom];
     let coverteredResult = convertedToUSD * convertRate[currencyConvertTo];
     return coverteredResult;
